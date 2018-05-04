@@ -18,7 +18,7 @@
 <body>
     <h1>home</h1>
     <a href="<?= base_url() ?>index.php/TMS_admin/logout">logout</a>
-    
+    <?php require('template/menu.php') ?>
     <h2>จัดแผนขนส่ง</h2><hr />
     <div ng-app="myApp" ng-controller="main" ng-init="init()">
     <form name="myform">
@@ -28,21 +28,21 @@
                     <label for="sel1">Shipment No. : </label>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                        <input name="shipmentno" type="text" class="form-control" ng-model="data.shipmentno" aria-describedby="basic-addon1" required>
+                        <input name="shipmentno" type="text" class="form-control" ng-model="data.shipmentno" aria-describedby="basic-addon1" >
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top:10px;margin-bottom:10px;">
                     <label for="sel1">ชื่อคนขับรถ (Driver) : </label>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                        <input name="driver" type="text" class="form-control" ng-model="data.driver" aria-describedby="basic-addon1" required>
+                        <input name="driver" type="text" class="form-control" ng-model="data.driver" aria-describedby="basic-addon1" >
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top:10px;margin-bottom:10px;">
                     <label for="sel1">หมายเลขทะเบียนรถ (Truck No.): </label>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span>
-                        <input name="truckno" type="text" class="form-control" ng-model="data.truckno" aria-describedby="basic-addon1" required>
+                        <input name="truckno" type="text" class="form-control" ng-model="data.truckno" aria-describedby="basic-addon1" >
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <label for="sel1">Delivery No. : </label>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></span>
-                    <select class="form-control" id="sel1" name="deliveryno" ng-model="data.deliveryno" required>
+                    <select class="form-control" id="sel1" name="deliveryno" ng-model="data.deliveryno" >
                         <option>Delivery No...</option>
                         <option value="1">T0132413E</option>
                         <option value="2">B1032564A</option>
@@ -66,7 +66,7 @@
                 <label for="sel1">Order No. : </label>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span>
-                    <select class="form-control" id="sel1" name="orderno" ng-model="data.orderno"required>
+                    <select class="form-control" id="sel1" name="orderno" ng-model="data.orderno">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -85,14 +85,14 @@
     <label for="sel1">วันนัดการจัดส่ง (Due Date) : </label>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-        <input type="date" value="2018-02-22" class="form-control" aria-describedby="basic-addon1" name="dduedate" ng-model="data.dduedate"required>
+        <input type="date" value="2018-02-22" class="form-control" aria-describedby="basic-addon1" name="dduedate" ng-model="data.dduedate">
     </div>
     </div>
     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;" >
         <label for="sel1">คลังสินค้าต้นทาง (Loading Station) : </label>
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></span>
-            <select class="form-control" id="sel1" name="loading" ng-model="data.loading" required>
+            <select class="form-control" id="sel1" name="loading" ng-model="data.loading" >
                     <option value="เลือกรายการ">เลือกรายการ</option>
                     <option ng-repeat='dest in LOADDESTS' value="{{dest.id}}">{{dest.stationname}}</option>
                 
@@ -103,7 +103,7 @@
         <label for="sel1">จุดหมายปลายทาง (Destination Station) : </label>
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span></span>
-            <select  class="form-control" id="sel1" ng-model="data.destination" required>
+            <select  class="form-control" id="sel1" ng-model="data.destination" >
                     <option value="เลือกรายการ">เลือกรายการ</option>
                     <option ng-repeat='dest in DESTS' value="{{dest.id}}">{{dest.destinationname}}</option>
                 
@@ -117,7 +117,7 @@
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4" align="center">
                     <button class="btn btn-info" style="margin:5px;" font color="white" ng-click="formvalidation()" ng-if="action === 'add'">เพิ่มข้อมูล</button>
-                    
+                    <button class="btn btn-info" style="margin:5px;" font color="white" ng-click="savevalue()" ng-if="action === 'edit'">แก้ไขข้อมูล</button>
                     <button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
                 </div>
                 <div class="col-sm-4">
@@ -154,8 +154,8 @@
                                 <td>{{x.loading}}</td>
                                 <td>{{x.destination}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning" text color="white" ng-click="editvalue(data)">แก้ไข</button>
-                                    <button type="button" class="close" aria-label="Close" style="margin:5px;" ng-click="deletevalue(data)">
+                                    <button type="button" class="btn btn-warning" text color="white" ng-click="editvalue(x)">แก้ไข</button>
+                                    <button type="button" class="close" aria-label="Close" style="margin:5px;" ng-click="deletevalue(x)">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </td>
@@ -181,7 +181,7 @@
             app.controller('main', function($scope, $http) {
                 $scope.TEMDATAS = []
                 $scope.action = "add";
-
+                let olddata = undefined;
                 $scope.init = () => {
                     $scope.getLoadDest();
                     $scope.getDest();
@@ -208,7 +208,16 @@
                     }
                 }
                 $scope.addData = () => {
-                    let data = $scope.data;
+                    let data = {
+                        shipmentno:$scope.data.shipmentno,
+                        driver:$scope.data.driver,
+                        truckno:$scope.data.truckno,
+                        deliveryno:$scope.data.deliveryno,
+                        orderno:$scope.data.orderno,
+                        dduedate:$scope.data.dduedate,
+                        loading:$scope.data.loading,
+                        destination:$scope.data.destination
+                        }
                     $scope.TEMDATAS.push(data);
                     $scope.data=undefined;
                 }
@@ -228,6 +237,45 @@
                 }
                 $scope.deletevalue = (data)=>{
                     $scope.TEMDATAS.splice($scope.TEMDATAS.indexOf(data),1);
+                }
+                $scope.editvalue = (data) =>{
+                    $scope.action = "edit";
+                    let x = {
+                        shipmentno:data.shipmentno,
+                        driver:data.driver,
+                        truckno:data.truckno,
+                        deliveryno:data.deliveryno,
+                        orderno:data.orderno,
+                        dduedate:data.dduedate,
+                        loading:data.loading,
+                        destination:data.destination
+                    }
+                    olddata = {
+                        shipmentno:data.shipmentno,
+                        driver:data.driver,
+                        truckno:data.truckno,
+                        deliveryno:data.deliveryno,
+                        orderno:data.orderno,
+                        dduedate:data.dduedate,
+                        loading:data.loading,
+                        destination:data.destination
+                    }
+                    $scope.data = x;
+                    //$scope.data=undefined;
+                }
+                $scope.savevalue = ()=>{
+                    $scope.deletevalue(olddata);
+                    $scope.addData($scope.data);
+                    $scope.action='add';
+                }
+                $scope.savedatas = () =>{
+                    $http.post("http://119.59.122.157/tms/post_deliveryplan", $scope.TEMDATAS,
+                     {headers: {'Content-Type': 'application/json'} })
+                    .then(function (response) {
+                        $scope.d= response.data;
+                        console.log($scope.d);
+                    });
+                    //$scope.TEMDATAS=[];
                 }
                 
                //http://119.59.122.157/tms/loadingstation
