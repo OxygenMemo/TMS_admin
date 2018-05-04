@@ -1,11 +1,12 @@
 ﻿<link href="~/Content/Search.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp">
 	<div class="row">
 		<div class="container">
 			<div class="col-lg-6" align="left">
-				<h2>รายชื่อในระบบทั้งหมด</h2>
+				<h2>จัดการคนขับรถ</h2>
 			</div>
 			<div class="col-lg-6" align="right" style="padding:25px;">
 				<form>

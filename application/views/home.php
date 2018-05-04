@@ -16,9 +16,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
-    <h1>home</h1>
-    <a href="<?= base_url() ?>index.php/TMS_admin/logout">logout</a>
     <?php require('template/menu.php') ?>
+    <br/>
     <h2>จัดแผนขนส่ง</h2><hr />
     <div ng-app="myApp" ng-controller="main" ng-init="init()">
     <form name="myform">

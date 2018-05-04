@@ -87,5 +87,17 @@ class TMS_admin extends CI_Controller {
         $this->session->sess_destroy();
         redirect(base_url()."index.php/TMS_admin/index");
     }
+    public function Person(){
+        $this->checklogin_no();
+        $this->load->view('Person');
+    }
+    public function Truck_information(){
+        $this->checklogin_no();
+        $this->load->view('Truck_information');
+    }
+    public function History(){
+        $this->checklogin_no();
+        $this->load->view('History');
+    }
 }
 class obj{}

@@ -1,5 +1,6 @@
 ﻿<link href="~/Content/Search.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp">
 	<div ng-controller="TruckInfo">
