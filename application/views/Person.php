@@ -1,5 +1,24 @@
-﻿<link href="~/Content/Search.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+
+<link href="~/Content/Search.css" rel="stylesheet" />
 <?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp">
@@ -30,13 +49,15 @@
 						<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;" ng-repeat="descipt in myWelcome">
 							<label for="sel1">ชื่อ-นามสกุล : {{descipt.name_surename}}</label><br /><br />
 							<label for="sel1">เบอร์โทรศัพท์ : {{descipt.telnumber}}</label><br /><br />
-							<label for="sel1">หมายเลขพนักงาน : {{descipt.employ_no}}</label><br /><br />
-							<label for="sel1">ใบขับขี่เลขที่ : {{descipt.driver_license}}</label><br />
+							<label for="sel1">ขับรถหมายเลขทะเบียน : {{descipt.truckno}}</label><br /><br />
+							<label for="sel1">ที่อยู่ : {{descipt.useraddress}}</label><br />
+							
 						</div>
 						<div class="col-md-6 col-md-push-1 col-lg-5" style="margin-top:10px;margin-bottom:10px;padding:1px;">
-							<label for="sel1">ชื่อในระบบ : knuing001</label><br /><br />
-							<label for="sel1">ประเภทเจ้าของ Username : Truck Driver</label><br />
-							<label for="sel1">ที่อยู่ : {{descipt.useraddress}}</label><br />
+							<label for="sel1">ชื่อในระบบ : {{descipt.username}}</label><br /><br />
+							<label for="sel1">หมายเลขพนักงาน : {{descipt.employ_no}}</label><br /><br />
+							<label for="sel1">ใบขับขี่เลขที่ : {{descipt.driver_license}}</label><br />
+							
 						</div>
 					</div>
 				</div>
@@ -73,7 +94,34 @@
 			</div>
 		</div>
 	</div>
-
-
-
 </div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('GETMessenger_join', function ($scope, $http) {
+		$http({
+		method: "GET",
+		url: "http://119.59.122.157/tms/Messenger_join"
+	}).then(function mySuccess(response) {
+		$scope.Messenger = response.data;
+	}, function myError(response) {
+		$scope.Messenger = response.statusText;
+	});
+	$scope.action = 'open';
+	$scope.noid = "";
+	$scope.openmessenger = function (noid) {
+		$scope.foo = true;
+		$http.get("http://119.59.122.157/tms/messenger_jjj" + noid).then(function (response) {
+			$scope.myWelcome = response.data;
+		});
+		//console.log($scope.foo);
+		$scope.action = 'close';
+	}
+	$scope.closemessenger = function () {
+		$scope.foo = false;
+		//console.log($scope.foo);
+		$scope.action = 'open';
+	}
+	});
+</script>
+</body>
+<html>

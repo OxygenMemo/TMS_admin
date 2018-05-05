@@ -18,7 +18,7 @@
 <body>
     <?php require('template/menu.php') ?>
     <br/>
-    <h2>จัดแผนขนส่ง</h2><hr />
+    <h2>จัดการกระจายแผนงานขนส่ง</h2><hr />
     <div ng-app="myApp" ng-controller="main" ng-init="init()">
     <form name="myform">
         <div class="row">

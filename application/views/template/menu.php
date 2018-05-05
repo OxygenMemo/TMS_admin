@@ -71,7 +71,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand"  href="<?= base_url() ?>index.php/TMS_admin/home">TMS ADMIN</a>
+            <a class="navbar-brand">TMS ADMIN</a>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
                 <span class="icon-bar"></span>
@@ -82,6 +82,7 @@
         </div>
         <div class="collapse navbar-collapse ng-scope" id="menu" data-ng-controller="logOut">
             <ul class="nav navbar-nav">
+            <li><a href="<?= base_url() ?>index.php/TMS_admin/home" style="text-color:white;">จัดการกระจายแผนงานขนส่ง</a></li>
             <li><a href="<?= base_url() ?>index.php/TMS_admin/Person" style="text-color:white;">จัดการคนขับรถ</a></li>
             <li><a href="<?= base_url() ?>index.php/TMS_admin/Truck_information" style="text-color:white;">จัดการรถบรรทุก</a></li>
             <li><a href="<?= base_url() ?>index.php/TMS_admin/History" style="text-color:white;">ประวัติขนส่ง</a></li>
