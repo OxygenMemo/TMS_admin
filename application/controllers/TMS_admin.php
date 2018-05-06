@@ -99,5 +99,21 @@ class TMS_admin extends CI_Controller {
         $this->checklogin_no();
         $this->load->view('History');
     }
+    public function gpsdevice(){
+        $this->checklogin_no();
+        $this->load->view('gpsdevice');
+    }
+    public function Person_Insert(){
+        $this->checklogin_no();
+        $this->load->view('Person_Insert');
+    }
+    public function Truck_Edit(){
+        $this->checklogin_no();
+        $this->load->view('Truck_Edit');
+    }
+    public function Truck_Information_Single(){
+        $this->checklogin_no();
+        $this->load->view('Truck_Information_Single');
+    }
 }
 class obj{}

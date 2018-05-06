@@ -1,12 +1,28 @@
-﻿<link href="~/Content/Search.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ประวัติขนส่ง</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<?= link_tag('application/css/Search.css'); ?>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
 <?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp" ng-controller="GETHistory">
 	<div class="row">
 		<div class="container">
 			<div class="col-lg-6" align="left">
-				<h2>ประวัติการขนส่ง</h2>
+				<h2>ประวัติขนส่ง</h2>
 			</div>
 			<div class="col-lg-6" align="right" style="padding:25px;">
 				<form>
@@ -77,7 +93,7 @@
 							<th>หมายเลขการจัดส่ง</th>
 							<th>คนขับรถ</th>
 							<th>วันที่ส่ง</th>
-							<th>หมายเหตุ</th>
+							<!--th>หมายเหตุ</th-->
 						</tr>
 					</thead>
 					<tbody>
@@ -87,10 +103,10 @@
 							<td>{{item.shipmentno}}</td>
 							<td>{{item.name_surename}}</td>
 							<td>{{item.deliverydate}}</td>
-							<td>
+							<!--<td>
 								<button type="button" class="btn btn-primary btn-sm" ng-click="openhistory()" ng-if="action === 'open'">รายละเอียดการจัดส่ง</button>
 								<button type="button" class="btn btn-danger btn-sm" ng-click="closehistory()" ng-if="action === 'close'">ปิด</button>
-							</td>
+							</td>-->
 						</tr>
 					</tbody>
 				</table>
@@ -98,3 +114,32 @@
 		</div>
 	</div>
 </div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('GETHistory', function ($scope, $http) {
+	//get history
+	$scope.action = 'open';
+	$scope.noid = "";
+	$http({
+		method: "GET",
+		url: "http://119.59.122.157/tms/history"
+	}).then(function mySuccess(response) {
+		$scope.history = response.data;
+	}, function myError(response) {
+		$scope.history = response.statusText;
+	});
+	$scope.openhistory = function () {
+		$scope.his = true;
+		// get history id
+		//console.log($scope.his);
+		$scope.action = 'close';
+	}
+	$scope.closehistory = function () {
+		$scope.his = false;
+		//console.log($scope.his);
+		$scope.action = 'open';
+	}
+});
+</script>
+</body>
+</html>

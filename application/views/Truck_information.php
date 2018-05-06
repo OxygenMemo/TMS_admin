@@ -1,5 +1,21 @@
-﻿<link href="~/Content/Search.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>จัดการรถบรรทุก</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<?= link_tag('application/css/Search.css'); ?>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
 <?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp">
@@ -7,22 +23,22 @@
 		<div class="row">
 			<div class="container">
 				<div class="col-lg-6" align="left">
-					<h2>รถบรรทุกทั้งหมด</h2><br />
+					<h2>จัดการรถบรรทุก</h2><br />
+					<a href="<?= base_url() ?>index.php/TMS_admin/gpsdevice" class="btn btn-info" role="button">ตาราง GPS device</a>
 					<button type="button" class="btn btn-info" text color="white" ng-click="openData()" ng-if="action === 'open'">+&nbsp;เพิ่มข้อมูลรถ</button>
 					<button type="button" class="btn btn-danger" text color="white" ng-click="closeData()" ng-if="action === 'close'">ปิด</button>
 				</div>
 				<div class="col-lg-6" align="right" style="padding:25px;">
 					<form>
-						<input type="text" name="search" placeholder="Search" align="right">
+						<input type="text" ng-model='searchText' name="search" placeholder="Search" align="right">
 					</form>
 				</div>
 			</div>
 		</div>
 		<div ng-show="truckinsert">
-			<h3>เพิ่มข้อมูลรถ</h3>
 			<div class="row ws-content">
 				<div class="container">
-
+				<h3>เพิ่มข้อมูลรถ</h3>
 					<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
 						<label for="sel1">ทะเบียนรถ : </label>
 						<div class="input-group">
@@ -36,6 +52,14 @@
 							<input type="text" class="form-control" placeholder="จังหวัด" aria-describedby="basic-addon1">
 						</div>
 						<br />
+						<label for="sel1">คนขับรถ : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="คนขับรถ" aria-describedby="basic-addon1"></input>
+						</div>
+						<br />
+					</div>
+					<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
 						<label for="sel1">น้ำหนักตัวรถ (ตัน) : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
@@ -48,24 +72,10 @@
 							<input type="text" class="form-control" placeholder="ประเภทรถ" aria-describedby="basic-addon1">
 						</div>
 						<br />
-					</div>
-					<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
 						<label for="sel1">gpsdevice : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
 							<input type="text" class="form-control" placeholder="gpsdevice" aria-describedby="basic-addon1">
-						</div>
-						<br />
-						<label for="sel1">ลักษณะยานพาหนะ : </label>
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></span>
-							<textarea type="text" class="form-control" placeholder="ลักษณะยานพาหนะ" aria-describedby="basic-addon1" rows="3"></textarea>
-						</div>
-						<br />
-						<label for="sel1">คนขับรถ : </label>
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></span>
-							<textarea type="text" class="form-control" placeholder="คนขับรถ" aria-describedby="basic-addon1" rows="3"></textarea>
 						</div>
 						<br />
 						<label for="sel1">รูปภาพ : </label>
@@ -104,32 +114,6 @@
 		<br />
 		<div class="row">
 			<div class="container">
-				<div class="col-lg-6">
-					<h3>DB:gpsdata > Table:devices</h3><br />
-					<table class="table">
-						<!--method get-->
-						<thead>
-							<tr>
-								<th>id</th>
-								<th>description</th>
-								<th>iconType</th>
-								<th>name</th>
-								<th>uniqueId</th>
-							</tr>
-						</thead>
-						<tbody ฝng-repeat="item in Messenger" style="padding-top:5px;">
-							<tr>
-								<td>1</td>
-								<td>6887</td>
-								<td>SEDAN</td>
-								<td>6887</td>
-								<td>131566</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-lg-6">
-					<h3>DB:tms > Table:truck_mas</h3><br />
 					<table class="table">
 						<!--method post-->
 						<thead>
@@ -137,20 +121,18 @@
 								<th>id</th>
 								<th>truckno</th>
 								<th>trucktype</th>
-
 								<th>gpsdevice</th>
 								<th>command</th>
 							</tr>
 						</thead>
-						<tbody ฝng-repeat="item in Messenger" style="padding-top:5px;">
+						<tbody ng-repeat="item in truck | filter:searchText" style="padding-top:5px;">
 							<tr>
-								<td>1</td>
-								<td>7221</td>
-								<td></td>
-
-								<td>3</td>
+								<td>{{item.id}}</td>
+								<td>{{item.truckno}}</td>
+								<td>{{item.trucktype}}</td>
+								<td>{{item.gpsdevice}}</td>
 								<td>
-									<button type="button" class="btn btn-warning" text color="white" ng-click="EditRowOftruckmas()">แก้ไข</button>
+								<a href="<?= base_url() ?>index.php/TMS_admin/Truck_Edit" class="btn btn-warning" role="button">แก้ไข</a>
 									<button type="button" class="close" aria-label="Close" ng-click="DelRowOftruckmas()" style="margin:5px;">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -158,12 +140,43 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
-}
+<script>
+var app = angular.module('myApp', []);
+app.controller('TruckInfo', function ($scope, $http) {
+	$http({
+        method: "GET",
+        url: "http://119.59.122.157/tms/truck_mas"
+    }).then(function mySuccess(response) {
+        $scope.truck = response.data;
+    }, function myError(response) {
+        $scope.truck = response.statusText;
+    });
+	$scope.action = 'open';
+	$scope.openData = function () {
+		$scope.truckinsert = true;
+		//
+		//console.log($scope.truckinsert);
+		$scope.action = 'close';
+	}
+	$scope.closeData = function () {
+		$scope.truckinsert = false;
+		//console.log($scope.truckinsert);
+		$scope.action = 'open';
+	}
+	$scope.DelRowOftruckmas = function () {
+		var txt;
+		var r = confirm("คุณแน่ใจว่าจะลบรถคันนี้ !!");
+		if (r == true) {
+			txt = "You pressed OK!";
+		} else {
+			txt = "You pressed Cancel!";
+		}
+	}
+});
+</script>
+</body>
+</html>

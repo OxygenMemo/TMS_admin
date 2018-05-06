@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>home</title>
+    <title>จัดการคนขับรถ</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+	<?= link_tag('application/css/Search.css'); ?>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -16,16 +16,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
-
-
-<link href="~/Content/Search.css" rel="stylesheet" />
 <?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp">
 	<div class="row">
 		<div class="container">
 			<div class="col-lg-6" align="left">
-				<h2>จัดการคนขับรถ</h2>
+				<h2>จัดการคนขับรถ</h2><br/>
+				<a href="<?= base_url() ?>index.php/TMS_admin/Person_Insert" class="btn btn-info" role="button">เพิ่มคนขับรถ</a>
 			</div>
 			<div class="col-lg-6" align="right" style="padding:25px;">
 				<form>
@@ -41,7 +39,7 @@
 		<div ng-show="foo">
 			<div class="row">
 				<div class="container">
-					{{myWelcome}}
+					
 					<div class="col-md-3 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
 						<img src="https://cms.kapook.com/uploads/tag/1/thumb_991_5886cd3df28d4.jpg" class="img-responsive" width="300" height="300"><br />
 					</div>
@@ -109,6 +107,7 @@
 	$scope.action = 'open';
 	$scope.noid = "";
 	$scope.openmessenger = function (noid) {
+		//console.log(noid);
 		$scope.foo = true;
 		$http.get("http://119.59.122.157/tms/messenger_jjj" + noid).then(function (response) {
 			$scope.myWelcome = response.data;

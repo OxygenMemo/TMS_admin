@@ -18,8 +18,9 @@
 <body>
     <?php require('template/menu.php') ?>
     <br/>
+    <div class="row">
+    <div class="container" ng-app="myApp" ng-controller="main" ng-init="init()">
     <h2>จัดการกระจายแผนงานขนส่ง</h2><hr />
-    <div ng-app="myApp" ng-controller="main" ng-init="init()">
     <form name="myform">
         <div class="row">
             <div class="container">
@@ -173,6 +174,7 @@
                 </div>
                 <div class="col-lg-4"></div>
             </div>
+        </div>
         </div>
         </div>
         <script>
