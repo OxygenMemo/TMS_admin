@@ -35,14 +35,21 @@
                     <label for="sel1">ชื่อคนขับรถ (Driver) : </label>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                        <input name="driver" type="text" class="form-control" ng-model="data.driver" aria-describedby="basic-addon1" >
+                        <select  class="form-control" id="sel1" name="driver" ng-model="data.driver" >
+                        <option value="เลือกรายการ">เลือกรายการ</option>
+                        <option ng-repeat='dest in NAMESURNAME' value="{{dest.name_surename}}">{{dest.name_surename}}</option>
+                    </select>
+                        
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top:10px;margin-bottom:10px;">
                     <label for="sel1">หมายเลขทะเบียนรถ (Truck No.): </label>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span>
-                        <input name="truckno" type="text" class="form-control" ng-model="data.truckno" aria-describedby="basic-addon1" >
+                        <select  class="form-control" id="sel1" name="truckno" ng-model="data.truckno" >
+                        <option value="เลือกรายการ">เลือกรายการ</option>
+                        <option ng-repeat='dest in TRUCKNUMBER' value="{{dest.truckno}}">{{dest.truckno}}</option>
+                    </select>
                     </div>
                 </div>
             </div>
@@ -186,6 +193,9 @@
                 $scope.init = () => {
                     $scope.getLoadDest();
                     $scope.getDest();
+                    $scope.getName();
+                    $scope.getTruckNumber();
+                    
                 }
                 $scope.formvalidation= ()=>{
                     var form = document.forms["myform"]//["shipmentno"].value;
@@ -234,6 +244,18 @@
                     $http.get("http://119.59.122.157/tms/destination")
                     .then(function(response) {
                         $scope.DESTS = response.data; 
+                    });
+                }
+                $scope.getName = () => {
+                    $http.get("http://119.59.122.157/tms/get_name_surename")
+                    .then(function(response) {
+                        $scope.NAMESURNAME = response.data; 
+                    });
+                }
+                $scope.getTruckNumber = () => {
+                    $http.get("http://119.59.122.157/tms/get_truckno")
+                    .then(function(response) {
+                        $scope.TRUCKNUMBER = response.data; 
                     });
                 }
                 $scope.deletevalue = (data)=>{

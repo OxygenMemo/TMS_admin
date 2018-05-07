@@ -30,12 +30,12 @@
 				</div>
 				<div class="col-lg-6" align="right" style="padding:25px;">
 					<form>
-						<input type="text" ng-model='searchText' name="search" placeholder="Search" align="right">
+						<input type="text" ng-model='searchText' placeholder="Search" align="right">
 					</form>
 				</div>
 			</div>
 		</div>
-		<div ng-show="truckinsert">
+		<div ng-show="truckInsert">
 			<div class="row ws-content">
 				<div class="container">
 				<h3>เพิ่มข้อมูลรถ</h3>
@@ -100,17 +100,112 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div ng-show="truckEdit">
+		<div class="row ws-content">
+				<div class="container">
+				<h3>แก้ไขข้อมูลรถ</h3>
+					<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+						<label for="sel1">ทะเบียนรถ : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="เลขที่" aria-describedby="basic-addon1">
+						</div>
+						<br />
+						<label for="sel1">จังหวัด : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="จังหวัด" aria-describedby="basic-addon1">
+						</div>
+						<br />
+						<label for="sel1">คนขับรถ : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="คนขับรถ" aria-describedby="basic-addon1"></input>
+						</div>
+						<br />
+					</div>
+					<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+						<label for="sel1">น้ำหนักตัวรถ (ตัน) : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)" aria-describedby="basic-addon1">
+						</div>
+						<br />
+						<label for="sel1">ประเภทรถ : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="ประเภทรถ" aria-describedby="basic-addon1">
+						</div>
+						<br />
+						<label for="sel1">gpsdevice : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+							<input type="text" class="form-control" placeholder="gpsdevice" aria-describedby="basic-addon1">
+						</div>
+						<br />
+						<label for="sel1">รูปภาพ : </label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+							<input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple />
+						</div><br />
+						<div class="row" id="image_preview"></div>
+					</div>
 
-			<script>
-				function preview_images() {
-					var total_file = document.getElementById("images").files.length;
-					for (var i = 0; i < total_file; i++) {
-						$('#image_preview').append("<div class='col-md-3'><img class='img-responsive' src='" + URL.createObjectURL(event.target.files[i]) + "'></div>");
-					}
-				}
-			</script>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="container">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-4" align="center">
+						<button type="submit" class="btn btn-success" style="margin:5px;">ตกลง</button>
+						<button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
+					</div>
+					<div class="col-sm-4">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-show="truckDetails">
+		<div class="container" >
+			<h2>ข้อมูลเฉพาะคันรถ</h2>
+		<br>
+		<div class="media" style="border: 1px solid black;padding:10px;border-radius:5px;">
+			<div class="col-sm-3">
+				<img srcset="http://www.isuzu-truck.com/wp-content/uploads/2017/09/ISUZU-FVZ.jpg" sizes="min-width: 400px;" style="max-width:80%;max-height:40%;box-sizing:border-box;padding: 1em;">
+			</div>
+			<div class="col-sm-9">
+				<div class="row">
+					<div class="col-sm-2" style="">
+					</div>
+					<div class="col-sm-5" style="">
+
+						<h4>
+							ทะเบียนรถ :<i>ทบ 1302</i><br /><br />
+							จังหวัด :<i>ชลบุรี</i>							
+						</h4>
+					</div>
+				</div>
+				<hr />
+
+				<div class="row">
+					<div class="col-sm-2" style="">
+					</div>
+					<div class="col-sm-5" style="">
+						น้ำหนักตัวรถ (ตัน) : 5270 KG.
+					</div>
+					<div class="col-sm-5" style="">
+						<p>ลักษณะยานพาหนะ : สีขาว</p>
+					</div>
+				</div>
+			</div>
 		</div>
 
+		<br>
+
+	</div>
+		</div>
 		<br />
 		<div class="row">
 			<div class="container">
@@ -132,8 +227,10 @@
 								<td>{{item.trucktype}}</td>
 								<td>{{item.gpsdevice}}</td>
 								<td>
-								<a href="<?= base_url() ?>index.php/TMS_admin/Truck_Edit" class="btn btn-warning" role="button">แก้ไข</a>
-									<button type="button" class="close" aria-label="Close" ng-click="DelRowOftruckmas()" style="margin:5px;">
+								<button type="button" class="btn btn-primary btn-sm" ng-click="OpenRowOftruck(item.id)" ng-if="action === 'open'">รายละเอียดตัวรถ</button>
+								<button type="button" class="btn btn-danger btn-sm" ng-click="CloseRowOftruck()" ng-if="action === 'close'">ปิด</button>
+								<button type="button" class="btn btn-warning btn-sm" ng-click="EditRowOftruck(item.id)" ng-if="action === 'open'">แก้ไข</button>
+									<button type="button" class="close" aria-label="Close" ng-click="DelRowOftruckmas(item.id)" style="margin:5px;">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</td>
@@ -142,6 +239,8 @@
 					</table>
 			</div>
 		</div>
+		
+
 	</div>
 </div>
 <script>
@@ -156,18 +255,36 @@ app.controller('TruckInfo', function ($scope, $http) {
         $scope.truck = response.statusText;
     });
 	$scope.action = 'open';
+	$scope.id = "";
 	$scope.openData = function () {
-		$scope.truckinsert = true;
-		//
-		//console.log($scope.truckinsert);
+		$scope.truckInsert = true;
 		$scope.action = 'close';
 	}
 	$scope.closeData = function () {
-		$scope.truckinsert = false;
-		//console.log($scope.truckinsert);
+		$scope.truckInsert = false;
+		$scope.truckEdit = false;
+		$scope.truckDetails = false;
 		$scope.action = 'open';
 	}
-	$scope.DelRowOftruckmas = function () {
+
+	$scope.OpenRowOftruck = function(id){
+		console.log(id);
+		$scope.truckDetails = true;
+		$scope.action = 'close';
+	}
+	$scope.CloseRowOftruck = function(){
+		$scope.truckInsert = false;
+		$scope.truckEdit = false;
+		$scope.truckDetails = false;
+		$scope.action = 'open';
+	}
+	$scope.EditRowOftruck = function (id){
+		console.log(id);
+		$scope.truckEdit = true;
+		$scope.action = 'close';
+	}
+	$scope.DelRowOftruckmas = function (id) {
+		console.log(id);
 		var txt;
 		var r = confirm("คุณแน่ใจว่าจะลบรถคันนี้ !!");
 		if (r == true) {
@@ -177,6 +294,12 @@ app.controller('TruckInfo', function ($scope, $http) {
 		}
 	}
 });
+function preview_images() {
+	var total_file = document.getElementById("images").files.length;
+		for (var i = 0; i < total_file; i++) {
+			$('#image_preview').append("<div class='col-md-3'><img class='img-responsive' src='" + URL.createObjectURL(event.target.files[i]) + "'></div>");
+		}
+}
 </script>
 </body>
 </html>
