@@ -37,7 +37,7 @@
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
                         <select  class="form-control" id="sel1" name="driver" ng-model="data.driver" >
                         <option value="เลือกรายการ">เลือกรายการ</option>
-                        <option ng-repeat='dest in NAMESURNAME' value="{{dest.name_surename}}">{{dest.name_surename}}</option>
+                        <option ng-repeat='dest in NAMESURNAME' value="{{dest.noid}}">{{dest.name_surename}}</option>
                     </select>
                         
                     </div>
@@ -48,7 +48,7 @@
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span>
                         <select  class="form-control" id="sel1" name="truckno" ng-model="data.truckno" >
                         <option value="เลือกรายการ">เลือกรายการ</option>
-                        <option ng-repeat='dest in TRUCKNUMBER' value="{{dest.truckno}}">{{dest.truckno}}</option>
+                        <option ng-repeat='dest in TRUCKNUMBER' value="{{dest.id}}">{{dest.truckno}}</option>
                     </select>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{TEMDATAS}}
+                
             </div>
         </div>
         <div class="row">
@@ -296,7 +296,7 @@
                      {headers: {'Content-Type': 'application/json'} })
                     .then(function (response) {
                         $scope.d= response.data;
-                        console.log($scope.d);
+                        console.log($scope.d);                     
                     });
                     //$scope.TEMDATAS=[];
                 }

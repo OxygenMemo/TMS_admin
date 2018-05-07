@@ -61,6 +61,115 @@
 				</div>
 			</div>
 		</div>
+		<div ng-show="editformMessenger">	
+	<div class="row">
+		<div class="container">
+		<h1>แก้ไขข้อมูลคนขับรถ</h1>
+		<hr />
+		<h3>ข้อมูลระบบ Log On</h3>
+		<br />
+			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+				<label for="sel1">username : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span>
+					<input ng-model="Register.username" id="username" type="text" class="form-control" placeholder="Username">
+				</div>
+				<br>
+			</div>
+			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+				<label for="sel1">Password : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span>
+					<input ng-model="Register.password" id="password" type="text" class="form-control" placeholder="Password">
+				</div>
+				<br>
+			</div>
+			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+				<label for="sel1">ประเภทเจ้าของ Username : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+					<select ng-model="Register.usertype" id="usertype" class="form-control">
+						<option>กรุณาเลือกประเภท...</option>
+						<option>admin</option>
+						<option>messenger</option>
+						<option>tracking</option>
+					</select>
+				</div>
+				<br>
+			</div>
+			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+				<label for="sel1">วันหมดอายุของ Username : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+					<!--input type="date" id="hyear" ng-model="inputhdate" class="form-control" aria-describedby="basic-addon1"-->
+					<input ng-model="Register.expiredate" id="expiredate" type="date" class="form-control">
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+
+	<hr /><!--เส้นแบ่งบรรทัด-->
+
+	
+	<br />
+	<div class="row">
+		<div class="container">
+			<h3>ข้อมูลผู้ใช้ในระบบ ผู้ขับรถ</h3>
+			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+				<label for="sel1">ชื่อ-นามสกุล : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+					<input ng-model="Register.name_surename" id="name_surename" type="text" class="form-control" placeholder="ชื่อ">
+				</div>
+
+				<br />
+				<label for="sel1">เบอร์โทรศัพท์ : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+					<input ng-model="Register.telnumber" id="telnumber" type="text" class="form-control" placeholder="เบอร์โทรศัพท์">
+				</div>
+				<br />
+				<label for="sel1">หมายเลขพนักงาน : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
+					<input ng-model="Register.employ_no" id="employ_no" type="text" class="form-control" placeholder="หมายเลขพนักงาน">
+				</div>
+				<br />
+				<label for="sel1">ใบขับขี่เลขที่ : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></span>
+					<input ng-model="Register.driver_license" id="driver_license" type="text" class="form-control" placeholder="ใบขับขี่เลขที่">
+				</div>
+				<br />
+			</div>
+			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+				<label for="sel1">ที่อยู่ : </label>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+					<textarea ng-model="Register.useraddress" id="useraddress" type="text" class="form-control" placeholder="ที่อยู่" rows="5"></textarea>
+				</div>
+				<br />
+				<label for="sel1">รูปภาพ : </label>
+				<div class="input-group">
+					<input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple />
+				</div>
+				<br />
+				<div class="row" id="image_preview"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="container">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<input ng-click="Registers()" type="submit" class="btn btn-success" value="ตกลง" />
+				<button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
+			</div>
+			<div class="col-lg-4"></div>
+		</div>
+	</div>
+		</div>
 		<br />
 		<div class="container">
 			<div class="table-responsive-sm">
@@ -84,6 +193,10 @@
 							<td>
 								<button type="button" class="btn btn-primary btn-sm" ng-click="openmessenger(item.noid)" ng-if="action === 'open'">ข้อมูลเฉพาะบุคคล</button>
 								<button type="button" class="btn btn-danger btn-sm" ng-click="closemessenger()" ng-if="action === 'close'">ปิด</button>
+								<button type="button" class="btn btn-warning btn-sm" ng-click="editmessenger(item.id)" ng-if="action === 'open'">แก้ไข</button>
+								<button type="button" class="close" aria-label="Close" ng-click="delmessenger(item.noid)" style="margin:5px;">
+									<span aria-hidden="true">&times;</span>
+								</button>
 							</td>
 							<td></td>
 						</tr>
@@ -117,8 +230,28 @@
 	}
 	$scope.closemessenger = function () {
 		$scope.foo = false;
+		$scope.editformMessenger = false;
 		//console.log($scope.foo);
 		$scope.action = 'open';
+	}
+	$scope.editmessenger = function () {
+	$scope.editformMessenger = true;
+	$scope.action = 'close';
+	}
+
+	$scope.delmessenger = function (noid) {
+		console.log(noid);
+		var txt;
+		var r = confirm("คุณแน่ใจว่าจะลบรถคันนี้ !!");
+		if (r == true) {
+			$http.delete("http://119.59.122.157/tms/Messenger" + noid).then(function (response) {
+			$scope.myWelcome = response.data;
+			alert.txt = response.data;
+			});
+			//txt = "You pressed OK!";
+		} else {
+			alert.txt = "You pressed Cancel!";
+		}
 	}
 	});
 </script>

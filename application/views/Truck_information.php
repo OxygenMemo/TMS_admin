@@ -19,7 +19,7 @@
 <?php require('template/menu.php') ?>
 <br />
 <div ng-app="myApp">
-	<div ng-controller="TruckInfo">
+	<div ng-controller="TruckInfo" ng-init="init()">
 		<div class="row">
 			<div class="container">
 				<div class="col-lg-6" align="left">
@@ -43,19 +43,22 @@
 						<label for="sel1">ทะเบียนรถ : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" placeholder="เลขที่" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" placeholder="เลขที่" aria-describedby="basic-addon1" ng-model="dataq.truckno">
 						</div>
 						<br />
 						<label for="sel1">จังหวัด : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" placeholder="จังหวัด" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" placeholder="จังหวัด" aria-describedby="basic-addon1" ng-model="dataq.province">
 						</div>
 						<br />
 						<label for="sel1">คนขับรถ : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" placeholder="คนขับรถ" aria-describedby="basic-addon1"></input>
+							<select  class="form-control" id="sel1" name="driver" ng-model="dataq.driver" >
+                        		<option value="เลือกรายการ">เลือกรายการ</option>
+                       			<option ng-repeat='dest in NAMESURNAME' value="{{dest.noid}}">{{dest.name_surename}}</option>
+                   			</select>
 						</div>
 						<br />
 					</div>
@@ -63,19 +66,19 @@
 						<label for="sel1">น้ำหนักตัวรถ (ตัน) : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)" aria-describedby="basic-addon1" ng-model="dataq.weight">
 						</div>
 						<br />
 						<label for="sel1">ประเภทรถ : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" placeholder="ประเภทรถ" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" placeholder="ประเภทรถ" aria-describedby="basic-addon1" ng-model="dataq.trucktype">
 						</div>
 						<br />
 						<label for="sel1">gpsdevice : </label>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
-							<input type="text" class="form-control" placeholder="gpsdevice" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" placeholder="gpsdevice" aria-describedby="basic-addon1" ng-model="dataq.gpsdevice">
 						</div>
 						<br />
 						<label for="sel1">รูปภาพ : </label>
@@ -159,8 +162,8 @@
 				<div class="container">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-4" align="center">
-						<button type="submit" class="btn btn-success" style="margin:5px;">ตกลง</button>
-						<button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
+					<button type="button" class="btn btn-success" ng-click="SaveInserttruck(dataq)">รายละเอียดตัวรถ</button>
+					<button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
 					</div>
 					<div class="col-sm-4">
 					</div>
@@ -168,11 +171,12 @@
 			</div>
 		</div>
 		<div ng-show="truckDetails">
-		<div class="container" >
+		<div class="container" ng-repeat="item in TRUCKMASID">
 			<h2>ข้อมูลเฉพาะคันรถ</h2>
 		<br>
 		<div class="media" style="border: 1px solid black;padding:10px;border-radius:5px;">
 			<div class="col-sm-3">
+			<!--{{item.truckpic}}-->
 				<img srcset="http://www.isuzu-truck.com/wp-content/uploads/2017/09/ISUZU-FVZ.jpg" sizes="min-width: 400px;" style="max-width:80%;max-height:40%;box-sizing:border-box;padding: 1em;">
 			</div>
 			<div class="col-sm-9">
@@ -182,21 +186,25 @@
 					<div class="col-sm-5" style="">
 
 						<h4>
-							ทะเบียนรถ :<i>ทบ 1302</i><br /><br />
-							จังหวัด :<i>ชลบุรี</i>							
+							ทะเบียนรถ :<i>{{item.truckno}}</i><br /><br />
+							จังหวัด :<i>{{item.province}}</i>							
+						</h4>
+					</div>
+					<div class="col-sm-5" style="">
+						<h4>
+							GPS Device :<i>{{item.gpsdevice}}</i><br /><br />						
 						</h4>
 					</div>
 				</div>
 				<hr />
-
 				<div class="row">
 					<div class="col-sm-2" style="">
 					</div>
 					<div class="col-sm-5" style="">
-						น้ำหนักตัวรถ (ตัน) : 5270 KG.
+						น้ำหนักตัวรถ (ตัน) : {{item.weight}}
 					</div>
 					<div class="col-sm-5" style="">
-						<p>ลักษณะยานพาหนะ : สีขาว</p>
+						<p>ประเภทของรถ : {{item.trucktype}}</p>
 					</div>
 				</div>
 			</div>
@@ -213,11 +221,11 @@
 						<!--method post-->
 						<thead>
 							<tr>
-								<th>id</th>
-								<th>truckno</th>
-								<th>trucktype</th>
+								<th>ลำดับ</th>
+								<th>ทะเบียนรถ</th>
+								<th>ประเภทของรถ</th>
 								<th>gpsdevice</th>
-								<th>command</th>
+								<th>หมายเหตุ</th>
 							</tr>
 						</thead>
 						<tbody ng-repeat="item in truck | filter:searchText" style="padding-top:5px;">
@@ -246,6 +254,10 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('TruckInfo', function ($scope, $http) {
+	$scope.data="";
+	$scope.init = () => {
+		$scope.getName();
+	}
 	$http({
         method: "GET",
         url: "http://119.59.122.157/tms/truck_mas"
@@ -254,6 +266,12 @@ app.controller('TruckInfo', function ($scope, $http) {
     }, function myError(response) {
         $scope.truck = response.statusText;
     });
+	$scope.getName = () => {
+        $http.get("http://119.59.122.157/tms/get_name_surename")
+        .then(function(response) {
+        $scope.NAMESURNAME = response.data; 
+        });
+    }
 	$scope.action = 'open';
 	$scope.id = "";
 	$scope.openData = function () {
@@ -266,9 +284,20 @@ app.controller('TruckInfo', function ($scope, $http) {
 		$scope.truckDetails = false;
 		$scope.action = 'open';
 	}
-
+	$scope.SaveInserttruck = function(dataq){
+		/*console.log(dataq);
+		$http.post("http://119.59.122.157/tms/insert_truck_mas" + dataq).then(function (response) {
+			.then(function (response) {
+                        $scope.d= response.data;
+                        console.log($scope.d);
+		});
+		$scope.truckEdit = false;*/
+	}
 	$scope.OpenRowOftruck = function(id){
 		console.log(id);
+		$http.get("http://119.59.122.157/tms/get_truck_mas_id" + id).then(function (response) {
+			$scope.TRUCKMASID = response.data;
+		});
 		$scope.truckDetails = true;
 		$scope.action = 'close';
 	}
