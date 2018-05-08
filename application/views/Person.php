@@ -35,7 +35,7 @@
 	<br /><br />
 
 
-	<div class="row ws-content" ng-controller="GETMessenger_join">
+	<div class="row ws-content" ng-controller="GETMessenger_join" ng-init="init()">
 		<div ng-show="foo">
 			<div class="row">
 				<div class="container">
@@ -61,18 +61,21 @@
 				</div>
 			</div>
 		</div>
+		<form>
 		<div ng-show="editformMessenger">	
-	<div class="row">
+		<div ng-repeat="item in EDATAS">
+		<div class="row">
 		<div class="container">
 		<h1>แก้ไขข้อมูลคนขับรถ</h1>
 		<hr />
 		<h3>ข้อมูลระบบ Log On</h3>
 		<br />
+		
 			<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
 				<label for="sel1">username : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span>
-					<input ng-model="Register.username" id="username" type="text" class="form-control" placeholder="Username">
+					<input ng-model="Register.username" type="text" class="form-control" ng-value="{{item.username}}">
 				</div>
 				<br>
 			</div>
@@ -80,7 +83,7 @@
 				<label for="sel1">Password : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span>
-					<input ng-model="Register.password" id="password" type="text" class="form-control" placeholder="Password">
+					<input ng-model="Register.password" id="password" type="text" class="form-control" ng-value="{{item.password}}">
 				</div>
 				<br>
 			</div>
@@ -88,12 +91,7 @@
 				<label for="sel1">ประเภทเจ้าของ Username : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-					<select ng-model="Register.usertype" id="usertype" class="form-control">
-						<option>กรุณาเลือกประเภท...</option>
-						<option>admin</option>
-						<option>messenger</option>
-						<option>tracking</option>
-					</select>
+					<input ng-model="Register.usertype" id="usertype" type="text" class="form-control" ng-value="{{item.usertype}}" class="hidden">
 				</div>
 				<br>
 			</div>
@@ -101,7 +99,6 @@
 				<label for="sel1">วันหมดอายุของ Username : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-					<!--input type="date" id="hyear" ng-model="inputhdate" class="form-control" aria-describedby="basic-addon1"-->
 					<input ng-model="Register.expiredate" id="expiredate" type="date" class="form-control">
 				</div>
 				<br>
@@ -120,26 +117,26 @@
 				<label for="sel1">ชื่อ-นามสกุล : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-					<input ng-model="Register.name_surename" id="name_surename" type="text" class="form-control" placeholder="ชื่อ">
+					<input ng-model="Register.name_surename" id="name_surename" type="text" class="form-control" ng-value="{{item.name_surename}}">
 				</div>
 
 				<br />
 				<label for="sel1">เบอร์โทรศัพท์ : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
-					<input ng-model="Register.telnumber" id="telnumber" type="text" class="form-control" placeholder="เบอร์โทรศัพท์">
+					<input ng-model="Register.telnumber" id="telnumber" type="text" class="form-control" ng-value="{{item.telnumber}}">
 				</div>
 				<br />
 				<label for="sel1">หมายเลขพนักงาน : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
-					<input ng-model="Register.employ_no" id="employ_no" type="text" class="form-control" placeholder="หมายเลขพนักงาน">
+					<input ng-model="Register.employ_no" id="employ_no" type="text" class="form-control" ng-value="{{item.employ_no}}">
 				</div>
 				<br />
 				<label for="sel1">ใบขับขี่เลขที่ : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></span>
-					<input ng-model="Register.driver_license" id="driver_license" type="text" class="form-control" placeholder="ใบขับขี่เลขที่">
+					<input ng-model="Register.driver_license" id="driver_license" type="text" class="form-control" ng-value="{{item.driver_license}}">
 				</div>
 				<br />
 			</div>
@@ -147,7 +144,7 @@
 				<label for="sel1">ที่อยู่ : </label>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
-					<textarea ng-model="Register.useraddress" id="useraddress" type="text" class="form-control" placeholder="ที่อยู่" rows="5"></textarea>
+					<textarea ng-model="Register.useraddress" id="useraddress" type="text" class="form-control" rows="5" ng-value="{{item.useraddress}}"></textarea>
 				</div>
 				<br />
 				<label for="sel1">รูปภาพ : </label>
@@ -157,13 +154,15 @@
 				<br />
 				<div class="row" id="image_preview"></div>
 			</div>
+			</div>
+			</form>
 		</div>
 	</div>
 	<div class="row">
 		<div class="container">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
-				<input ng-click="Registers()" type="submit" class="btn btn-success" value="ตกลง" />
+				<button ng-click="Registers()" type="submit" class="btn btn-success">ตกลง</button>
 				<button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
 			</div>
 			<div class="col-lg-4"></div>
@@ -193,7 +192,7 @@
 							<td>
 								<button type="button" class="btn btn-primary btn-sm" ng-click="openmessenger(item.noid)" ng-if="action === 'open'">ข้อมูลเฉพาะบุคคล</button>
 								<button type="button" class="btn btn-danger btn-sm" ng-click="closemessenger()" ng-if="action === 'close'">ปิด</button>
-								<button type="button" class="btn btn-warning btn-sm" ng-click="editmessenger(item.id)" ng-if="action === 'open'">แก้ไข</button>
+								<button type="button" class="btn btn-warning btn-sm" ng-click="editmessenger(item.noid)" ng-if="action === 'open'">แก้ไข</button>
 								<button type="button" class="close" aria-label="Close" ng-click="delmessenger(item.noid)" style="margin:5px;">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -209,6 +208,10 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('GETMessenger_join', function ($scope, $http) {
+		$scope.init = () => {
+
+		}
+		$scope.Register="";
 		$http({
 		method: "GET",
 		url: "http://119.59.122.157/tms/Messenger_join"
@@ -234,9 +237,21 @@
 		//console.log($scope.foo);
 		$scope.action = 'open';
 	}
-	$scope.editmessenger = function () {
+	$scope.getmessenger = (noid) => {
+      	$http.get("http://119.59.122.157/tms/destination"+ noid)
+        .then(function(response) {
+        $scope.EDATAS = response.data; 
+    });
+    }
+	$scope.editmessenger = function (noid) {
 	$scope.editformMessenger = true;
+	$http.get("http://119.59.122.157/tms/Register/" + noid).then(function (response) {
+			$scope.EDATAS = response.data;
+		});
 	$scope.action = 'close';
+	}
+	$scope.saveEditMessenger = function(){
+		console.log($scope.Register);
 	}
 
 	$scope.delmessenger = function (noid) {
