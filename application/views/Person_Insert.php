@@ -133,7 +133,7 @@ var app = angular.module('myApp', []);
 app.controller('POSTRegister', function ($scope, $http) {
 	$scope.Register = {};
 	$scope.Registers = function () {
-		console.log('start saveEditdata1');
+		
 		console.dir($scope.Register);
 		$http.post('http://119.59.122.157/tms/Register', $scope.Register).then(function successCallback(response) {
 			alert(response.data.data.text);

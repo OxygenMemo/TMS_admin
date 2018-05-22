@@ -298,7 +298,7 @@
                         $scope.d= response.data;
                         console.log($scope.d);                     
                     });
-                    //$scope.TEMDATAS=[];
+                    console.log($scope.TEMDATAS=[]);
                 }
                 
                //http://119.59.122.157/tms/loadingstation
