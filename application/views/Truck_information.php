@@ -47,63 +47,46 @@
                     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
                         <label for="sel1">ทะเบียนรถ : </label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="เลขที่" aria-describedby="basic-addon1"
-                                   ng-model="dataq.truckno">
+                            <span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-list" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" placeholder="เลขที่" aria-describedby="basic-addon1" ng-model="dataq.truckno">
                         </div>
                         <br/>
                         <label for="sel1">จังหวัด : </label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pushpin"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="จังหวัด"
-                                   aria-describedby="basic-addon1" ng-model="dataq.province">
+                            <span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" placeholder="จังหวัด" aria-describedby="basic-addon1" ng-model="dataq.province">
                         </div>
                         <br/>
-                        <label for="sel1">คนขับรถ : </label>
+                        <label for="sel1">gpsdevice : </label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"
-                                                                                    aria-hidden="true"></span></span>
-                            <select class="form-control" id="sel1" name="driver" ng-model="dataq.driver">
-                                <option value="เลือกรายการ">เลือกรายการ</option>
-                                <option ng-repeat='dest in NAMESURNAME' value="{{dest.noid}}">{{dest.name_surename}}
-                                </option>
-                            </select>
+                            <span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" placeholder="gpsdevice" aria-describedby="basic-addon1" ng-model="dataq.gpsdevice">
                         </div>
                         <br/>
                     </div>
                     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
                         <label for="sel1">น้ำหนักตัวรถ (ตัน) : </label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span
-                                        class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)"
-                                   aria-describedby="basic-addon1" ng-model="dataq.weight">
+                            <span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)" aria-describedby="basic-addon1" ng-model="dataq.weight">
                         </div>
                         <br/>
                         <label for="sel1">ประเภทรถ : </label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-inbox"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="ประเภทรถ"
-                                   aria-describedby="basic-addon1" ng-model="dataq.trucktype">
-                        </div>
-                        <br/>
-                        <label for="sel1">gpsdevice : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span
-                                        class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="gpsdevice"
-                                   aria-describedby="basic-addon1" ng-model="dataq.gpsdevice">
+                            <span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" placeholder="ประเภทรถ" aria-describedby="basic-addon1" ng-model="dataq.trucktype">
                         </div>
                         <br/>
                         <label for="sel1">รูปภาพ : </label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-picture"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="file" class="form-control" id="images" name="images[]"
-                                   onchange="preview_images();" multiple/>
+                            <span class="input-group-addon" id="basic-addon1">
+							<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                            <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
                         </div>
                         <br/>
                         <div class="row" id="image_preview"></div>
@@ -117,81 +100,69 @@
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4" align="center">
                         <button type="submit" class="btn btn-success" style="margin:5px;" ng-click="SaveInserttruck();">ตกลง</button>
-                        <button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">
-                            เคลียร์ข้อมูล
-                        </button>
+                        <button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
                     </div>
                     <div class="col-sm-4">
                     </div>
                 </div>
             </div>
         </div>
-        <div ng-show="truckEdit">
+        <div ng-show="truckEdit" ng-repeat="item in TRUCKDATAS">
             <div class="row ws-content">
                 <div class="container">
                     <h3>แก้ไขข้อมูลรถ</h3>
-                    <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
-                        <label for="sel1">ทะเบียนรถ : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-list"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="เลขที่"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                        <br/>
-                        <label for="sel1">จังหวัด : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pushpin"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="จังหวัด"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                        <br/>
-                        <label for="sel1">คนขับรถ : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="คนขับรถ"
-                                   aria-describedby="basic-addon1"></input>
-                        </div>
-                        <br/>
-                    </div>
-                    <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
-                        <label for="sel1">น้ำหนักตัวรถ (ตัน) : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span
-                                        class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                        <br/>
-                        <label for="sel1">ประเภทรถ : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-inbox"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="ประเภทรถ"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                        <br/>
-                        <label for="sel1">gpsdevice : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span
-                                        class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="gpsdevice"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                        <br/>
-                        <label for="sel1">รูปภาพ : </label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-picture"
-                                                                                    aria-hidden="true"></span></span>
-                            <input type="file" class="form-control" id="images" name="images[]"
-                                   onchange="preview_images();" multiple/>
-                        </div>
-                        <br/>
-                        <div class="row" id="image_preview"></div>
-                    </div>
-
+					<div >
+						<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+							<label for="sel1">ทะเบียนรถ : </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-list" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="เลขที่" aria-describedby="basic-addon1" ng-model="item.truckno">
+								<input type="hidden" class="form-control"  aria-describedby="basic-addon1" ng-model="item.id" >
+							</div>
+							<br/>
+							<label for="sel1">จังหวัด : </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="จังหวัด"aria-describedby="basic-addon1" ng-model="item.province">
+							</div>
+							<br/>
+							<label for="sel1">gpsdevice : </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="gpsdevice" aria-describedby="basic-addon1" ng-model="item.gpsdevice">
+							</div>
+							<br/>
+						</div>
+						<div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
+							<label for="sel1">น้ำหนักตัวรถ (ตัน) : </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="น้ำหนักตัวรถ (ตัน)" aria-describedby="basic-addon1" ng-model="item.weight">
+							</div>
+							<br/>
+							<label for="sel1">ประเภทรถ : </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="ประเภทรถ" aria-describedby="basic-addon1" ng-model="item.trucktype">
+							</div>
+							<br/>
+							<label for="sel1">รูปภาพ : </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+								<input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
+							</div>
+							<br/>
+							<div class="row" id="image_preview">
+							
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
 
@@ -199,12 +170,8 @@
                 <div class="container">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4" align="center">
-                        <button type="button" class="btn btn-success" ng-click="">
-                            รายละเอียดตัวรถ
-                        </button>
-                        <button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">
-                            เคลียร์ข้อมูล
-                        </button>
+                        <button type="button" class="btn btn-success" ng-click="SaveEdittruck(item)">ตกลง</button>
+                        <button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
                     </div>
                     <div class="col-sm-4">
                     </div>
@@ -303,8 +270,9 @@
 </div>
 <script>
     var app = angular.module('myApp', []);
-    app.controller('TruckInfo', function ($scope, $http) {
+    app.controller('TruckInfo', function ($scope, $http,$parse) {
         $scope.data = "";
+		$scope.dataq = {};
         $scope.init = () => {
 
             $scope.getName();
@@ -336,15 +304,47 @@
             $scope.truckDetails = false;
             $scope.action = 'open';
         }
-        $scope.SaveInserttruck = function (dataq) {
-            /*console.log(dataq);
-            $http.post("http://119.59.122.157/tms/insert_truck_mas" + dataq).then(function (response) {
-                .then(function (response) {
-                            $scope.d= response.data;
-                            console.log($scope.d);
+        $scope.SaveInserttruck = function () {
+            console.log($scope.dataq);
+            $http.post("http://119.59.122.157/tms/insert_truck_mas", $scope.dataq,{headers: {'Content-Type': 'application/json'} }).then(function (response) {
+                $scope.d= response.data;
+                console.log($scope.d);
+				$http({
+				method: "GET",
+				url: "http://119.59.122.157/tms/truck_mas"
+				}).then(function mySuccess(response) {
+					$scope.truck = response.data;
+				}, function myError(response) {
+					$scope.truck = response.statusText;
+				});
             });
-            $scope.truckInsert = false;*/
+			$scope.dataq = {};
+            $scope.truckInsert = false;
+			$scope.truckEdit = false;
+            $scope.truckDetails = false;
+            $scope.action = 'open';
         }
+		$scope.SaveEdittruck = function (item) {
+            console.log(item);
+            $http.put("http://119.59.122.157/tms/update_truck_mas",item,{headers: {'Content-Type': 'application/json'} }).then(function (response) {
+                $scope.d= response.data;
+                console.log($scope.d);
+				$http({
+				method: "GET",
+				url: "http://119.59.122.157/tms/truck_mas"
+				}).then(function mySuccess(response) {
+					$scope.truck = response.data;
+				}, function myError(response) {
+					$scope.truck = response.statusText;
+				});
+            });
+			
+            $scope.truckInsert = false;
+			$scope.truckEdit = false;
+            $scope.truckDetails = false;
+            $scope.action = 'open';
+        }
+
         $scope.OpenRowOftruck = function (id) {
             console.log(id);
             $http.get("http://119.59.122.157/tms/get_truck_mas_id" + id).then(function (response) {
@@ -363,6 +363,9 @@
             console.log(id);
             $scope.truckEdit = true;
             $scope.action = 'close';
+			$http.get("http://119.59.122.157/tms/get_truck_mas_id" + id).then(function (response) {
+                $scope.TRUCKDATAS = response.data;
+            });
         }
         $scope.DelRowOftruckmas = function (id) {
             console.log(id);

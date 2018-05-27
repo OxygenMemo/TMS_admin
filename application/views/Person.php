@@ -66,6 +66,7 @@
         <br/><br/>
             <div class="row ws-content">
                 <div class="container">
+				<h3>แก้ไขคนให้ขับรถ</h3>
 				<div class="col-md-4 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
 					<label for="sel1">ชื่อคนขับรถ : </label>
                     <div class="input-group">
@@ -100,11 +101,11 @@
         </div>
         <!--จบ แก้ไขคนให้ขับรถ-->
         <!--เริ่ม แก้ไขข้อมูลคนขับรถ-->
-        <div ng-show="editformMessenger">
-        <br/><br/><br/><br/>
+        <div ng-show="editformMessenger" ng-repeat="item in EDATASE">
+        <br/><br/><br/>
             <div class="row ws-content">
                 <div class="container">
-                    <div ng-repeat="item in EDATAS">
+                    <div>
                         <h1>แก้ไขข้อมูลคนขับรถ</h1><hr>
                         <h3>ข้อมูลระบบ Log On</h3>
                         <br/>
@@ -113,7 +114,9 @@
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span>
-                            <input ng-model="Register.username" type="text" class="form-control" ng-value="{{item.username}}">
+                            <input type="text" class="form-control" ng-model="item.username">
+							<input type="hidden" class="form-control" ng-model="item.metid">
+							<input type="hidden" class="form-control" ng-model="item.utid">
                         </div><br>
                     </div>
                     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
@@ -121,7 +124,7 @@
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></span>
-                            <input ng-model="Register.password" id="password" type="text" class="form-control" ng-value="{{item.password}}">
+                            <input id="password" type="text" class="form-control" ng-model="item.password">
                         </div><br>
                     </div>
                     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
@@ -129,7 +132,7 @@
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <spanclass="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                            <input ng-model="Register.usertype" id="usertype" type="text" class="form-control" ng-value="{{item.usertype}}" class="hidden">
+                            <input id="usertype" type="text" class="form-control" ng-model="item.usertype">
                         </div><br>
                     </div>
                     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
@@ -137,7 +140,7 @@
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                            <input ng-model="Register.expiredate" id="expiredate" type="date" class="form-control">
+                            <input ng-model="testdate" id="expiredate" type="date" class="form-control" )>
                         </div><br>
                     </div>
                 <hr/><br/><!--เส้นแบ่งบรรทัด-->
@@ -147,25 +150,25 @@
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                            <input ng-model="Register.name_surename" id="name_surename" type="text" class="form-control" ng-value="{{item.name_surename}}">
+                            <input id="name_surename" type="text" class="form-control" ng-model="item.name_surename">
                         </div><br/>
                         <label for="sel1">เบอร์โทรศัพท์ : </label>
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
-                            <input ng-model="Register.telnumber" id="telnumber" type="text" class="form-control" ng-value="{{item.telnumber}}">
+                            <input id="telnumber" type="text" class="form-control" ng-model="item.telnumber">
                         </div><br/>
                         <label for="sel1">หมายเลขพนักงาน : </label>
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
-                            <input ng-model="Register.employ_no" id="employ_no" type="text" class="form-control" ng-value="{{item.employ_no}}">
+                            <input id="employ_no" type="text" class="form-control" ng-model="item.employ_no">
                         </div><br/>
                         <label for="sel1">ใบขับขี่เลขที่ : </label>
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></span>
-                            <input ng-model="Register.driver_license" id="driver_license" type="text"class="form-control" ng-value="{{item.driver_license}}">
+                            <input id="driver_license" type="text"class="form-control" ng-model="item.driver_license">
                         </div><br/>
                     </div>
                     <div class="col-md-6 col-md-push-1" style="margin-top:10px;margin-bottom:10px;">
@@ -173,7 +176,7 @@
                         <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">
                         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
-                            <textarea ng-model="Register.useraddress" id="useraddress" type="text" class="form-control" rows="5" ng-value="{{item.useraddress}}"></textarea>
+                            <textarea id="useraddress" type="text" class="form-control" rows="5" ng-model="item.useraddress"></textarea>
                         </div><br/>
                         <label for="sel1">รูปภาพ : </label>
                         <div class="input-group">
@@ -181,12 +184,12 @@
                         </div><br/>
                         <div class="row" id="image_preview"></div>
                     </div>
-                    <br>
-                    <div class="row">
+                    <div class="row ws-content" style="margin:5px;">
                         <div class="container">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4">
-                            <button ng-click="Registers()" type="submit" class="btn btn-success">ตกลง</button>
+						<br/><br/><br/>
+                            <button ng-click="saveEditMessenger(item)" type="submit" class="btn btn-success">ตกลง</button>
                             <button type="reset" class="btn btn-warning" style="margin:5px;" font color="white">เคลียร์ข้อมูล</button>
                         </div>
                         <div class="col-lg-4"></div>
@@ -212,12 +215,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat='item in Messenger | filter:searchText'>
+                    <tr ng-repeat='item in MessengerI | filter:searchText'>
                         <td>{{item.name_surename}}</td>
                         <td>{{item.telnumber}}</td>
                         <td>{{item.trucktype}}</td>
                         <td>{{item.truckno}}</td>
-
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" ng-click="openmessenger(item.noid)"
                                     ng-if="action === 'open'">ข้อมูลเฉพาะบุคคล
@@ -228,7 +230,7 @@
                             <button type="button" class="btn btn-warning btn-sm" ng-click="editmessenger(item.noid)"
                                     ng-if="action === 'open'">แก้ไข
                             </button>
-                            <button type="button" class="close" aria-label="Close" ng-click="delmessenger(item.noid)"
+                            <button type="button" class="close" aria-label="Close" ng-click="delmessenger(item.noid,item.userlogon)"
                                     style="margin:5px;">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -251,14 +253,15 @@
             }
             $scope.Register = "";
 			$scope.data_edit_truck = {};
+			$scope.testdate = new Date();
 			
             $http({
                 method: "GET",
                 url: "http://119.59.122.157/tms/Messenger_join"
             }).then(function mySuccess(response) {
-                $scope.Messenger = response.data;
+                $scope.MessengerI = response.data;
             }, function myError(response) {
-                $scope.Messenger = response.statusText;
+                $scope.MessengerI = response.statusText;
             });
             $scope.action = 'open';
             $scope.noid = "";
@@ -311,32 +314,16 @@
             $scope.editmessenger = function (noid) {
                 $scope.editformMessenger = true;
                 $http.get("http://119.59.122.157/tms/Register/" + noid).then(function (response) {
-                    $scope.EDATAS = response.data;
+                    $scope.EDATASE = response.data;
                 });
                 $scope.action = 'close';
             }
-            $scope.saveEditMessenger = function () {
-                console.log($scope.Register);
-            }
-			$scope.savedata_edit_truck = function () {
-                console.log($scope.data_edit_truck);
-                $http.put("http://119.59.122.157/tms/update_truck_mas", $scope.data_edit_truck,
-                {headers: {'Content-Type': 'application/json'} })
-                .then(function (response) {
-                $scope.d= response.data;
-                console.log($scope.d);                     
-                });
-            }
-
-            $scope.delmessenger = function (noid) {
-                console.log(noid);
-                var txt;
-                var r = confirm("คุณแน่ใจว่าจะลบรถคันนี้ !!");
-                if (r == true) {
-                    $http.delete("http://119.59.122.157/tms/Messenger/" + noid).then(function (response) {
-                        $scope.myWelcome = response.data;
-                        alert.txt = response.data;
-                    });
+            $scope.saveEditMessenger = function (item) {
+                console.log(item);
+				$http.put("http://119.59.122.157/tms/Register", item,
+                	{headers: {'Content-Type': 'application/json'} }).then(function (response) {
+                	$scope.d= response.data;
+                	console.log($scope.d);
 					$http({
 					method: "GET",
 					url: "http://119.59.122.157/tms/Messenger_join"
@@ -344,8 +331,60 @@
 						$scope.Messenger = response.data;
 					}, function myError(response) {
 						$scope.Messenger = response.statusText;
-					});
-                    //txt = "You pressed OK!";
+					});                     
+                });
+				$scope.edit_drive_truck = false;
+                $scope.details = false;
+                $scope.editformMessenger = false;
+                $scope.action = 'open';
+            }
+			$scope.savedata_edit_truck = function () {
+                console.log($scope.data_edit_truck);
+                $http.put("http://119.59.122.157/tms/update_driver", $scope.data_edit_truck,
+                	{headers: {'Content-Type': 'application/json'} }).then(function (response) {
+                	$scope.d= response.data;
+                	console.log($scope.d);
+					$http({
+					method: "GET",
+					url: "http://119.59.122.157/tms/Messenger_join"
+					}).then(function mySuccess(response) {
+						$scope.Messenger = response.data;
+					}, function myError(response) {
+						$scope.Messenger = response.statusText;
+					});                     
+                });
+				$scope.edit_drive_truck = false;
+                $scope.details = false;
+                $scope.editformMessenger = false;
+                $scope.action = 'open';
+            }
+
+            $scope.delmessenger = function (item1,item2) {
+                console.log(item1,item2);
+                var txt;
+                var r = confirm("คุณแน่ใจว่าจะลบรถคันนี้ !!");
+                if (r == true) {
+                    $http.delete("http://119.59.122.157/tms/Messenger/" + item1).then(function (response) {
+                        $scope.d= response.data;
+                	console.log($scope.d);
+                    });
+					$http.delete("http://119.59.122.157/tms/_user/" + item2).then(function (response) {
+                        $scope.d= response.data;
+                		console.log($scope.d);
+						$http({
+							method: "GET",
+							url: "http://119.59.122.157/tms/Messenger_join"
+							}).then(function mySuccess(response) {
+								$scope.Messenger = response.data;
+							}, function myError(response) {
+								$scope.Messenger = response.statusText;
+							});
+							$scope.edit_drive_truck = false;
+							$scope.details = false;
+							$scope.editformMessenger = false;
+							$scope.action = 'open';
+                    });
+					
                 } else {
                     alert.txt = "You pressed Cancel!";
                 }
